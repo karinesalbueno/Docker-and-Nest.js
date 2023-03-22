@@ -16,17 +16,20 @@ model User {
   email         String
   password      String
   code          String    @unique
-  recorded_days Records[]
+  recorded_days Records[] @relation("user")
+
+  @@map("users")
 }
 
 model Records {
-  id     Int       @id @default(autoincrement())
-  user   User      @relation(fields: [userID], references: [id])
-  userID Int
-  date   DateTime
-  start  DateTime
-  end    DateTime?
+  id         Int      @id @default(autoincrement())
+  user       User     @relation("user", fields: [userCode], references: [code])
+  userCode   String
+  date       DateTime
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   //user só pode ser registrado apenas uma vez por dia 
-  @@unique([userID, date])
+  @@unique([userCode, date])
+  @@map("records")
 }
