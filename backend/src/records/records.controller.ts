@@ -1,7 +1,7 @@
 import { Controller, Param, Post, Get, Body, Put } from '@nestjs/common';
 import { Records } from '@prisma/client';
-import { CreateDto } from 'src/dtos/create.dto';
-import { UpdateDto } from 'src/dtos/update.dto';
+import { CreateDto } from './dtos/create.dto';
+import { UpdateDto } from './dtos/update.dto';
 import { RecordsService } from './records.service';
 
 @Controller('work')
@@ -15,7 +15,7 @@ export class RecordsController {
 
   @Post()
   async create(@Body() createDto: CreateDto) {
-    return this.records.Register(createDto);
+    return this.records.Create(createDto);
   }
 
   @Put()

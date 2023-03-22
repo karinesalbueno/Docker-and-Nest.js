@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Records } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
-import { CreateDto } from 'src/dtos/create.dto';
-import { UpdateDto } from 'src/dtos/update.dto';
+import { CreateDto } from './dtos/create.dto';
+import { UpdateDto } from './dtos/update.dto';
 
 @Injectable()
 export class RecordsService {
@@ -16,10 +16,10 @@ export class RecordsService {
     });
   }
 
-  async Register(params: CreateDto): Promise<void | string | CreateDto> {
+  async Create(params: CreateDto): Promise<void | string | CreateDto> {
     const { userCode } = params;
 
-    // Verificar se já existe um ponto registrado para o funcionário na data atual
+    //  ***** Verificar se já existe um ponto registrado para o funcionário na data atual
     const req = await this.prisma.records.create({
       data: {
         userCode: userCode,
