@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { User } from '@prisma/client';
 import { CreateDto } from './dtos/create.dto';
-// import { DeleteDto } from './dtos/delete.dto';
 
 @Injectable()
 export class UsersService {
@@ -44,25 +43,24 @@ export class UsersService {
     return req;
   }
 
-  // async Delete(params: DeleteDto): Promise<DeleteDto> {
-  //   const { id, code } = params;
+  async Delete(id: number): Promise<string> {
+    // Verificar se já existe uma pessoa com o mesmo código
+    const findFirt = await this.prisma.user.findFirst({
+      where: { id: id },
+    });
 
-  //   // Verificar se já existe uma pessoa com o mesmo código
-  //   const findFirt = await this.prisma.user.findFirst({
-  //     where: { id: id, code: code },
-  //   });
+    if (!findFirt) {
+      throw new Error('UsuÁrio não existeeeee!');
+    }
 
-  //   if (!findFirt) {
-  //     throw new Error('UsuÁrio não existeeeee!');
-  //   }
+    const deleteUser = await this.prisma.user.delete({
+      where: {
+        id: id,
+      },
+    });
 
-  //   const req = await this.prisma.user.delete({
-  //     where: {
-  //       id: id,
-  //       code: code,
-  //     },
-  //   });
+    const { name, code } = deleteUser;
 
-  //   return req;
-  // }
+    return `Usuário excluido :'( ${name}-${code}`;
+  }
 }
