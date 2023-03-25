@@ -17,7 +17,7 @@ export class UsersController {
     return this.user.FindUnique(code);
   }
 
-  @Post()
+  @Post('/register')
   async create(@Body() create: CreateDto) {
     return this.user.Create(create);
   }
