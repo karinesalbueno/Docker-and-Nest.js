@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Records } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
+
 import { CreateDto } from './dtos/create.dto';
 import { UpdateDto } from './dtos/update.dto';
 
@@ -19,11 +20,24 @@ export class RecordsService {
   async Create(params: CreateDto): Promise<void | string | CreateDto> {
     const { userCode } = params;
 
-    //  ***** Verificar se já existe um ponto registrado para o funcionário na data atual
+    const today = new Date().toISOString().slice(0, 10); //transforma data atual em string e remove as horas com slice
+
+    // Verificar se já existe um ponto registrado para o funcionário na data atual
+    const findFirt = await this.prisma.records.findFirst({
+      where: {
+        userCode: userCode,
+        date: today,
+      },
+    });
+
+    if (findFirt) {
+      throw new Error('Ponto já registrado para este funcionário hoje.');
+    }
+
     const req = await this.prisma.records.create({
       data: {
         userCode: userCode,
-        date: new Date(),
+        date: today,
       },
     });
     return req;
