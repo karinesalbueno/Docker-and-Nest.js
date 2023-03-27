@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { User } from '@prisma/client';
@@ -7,11 +8,10 @@ import { CreateDto } from './dtos/create.dto';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async FindUser(code: string, password: string): Promise<User | null> {
-    return this.prisma.user.findFirst({
+  async FindUser(code: string): Promise<User> {
+    return this.prisma.user.findFirstOrThrow({
       where: {
         code: code,
-        password: password,
       },
     });
   }
@@ -28,8 +28,11 @@ export class UsersService {
     });
   }
 
-  async Create(params: CreateDto): Promise<CreateDto> {
+  async Create(params: CreateDto): Promise<CreateDto | string> {
     const { name, email, password, code } = params;
+
+    const saltOrRounds = 10;
+    const encrypted = await bcrypt.hash(password, saltOrRounds); //criptografia senha
 
     // Verificar se já existe uma pessoa com o mesmo código
     const findFirt = await this.prisma.user.findFirst({
@@ -44,7 +47,7 @@ export class UsersService {
       data: {
         name,
         email,
-        password,
+        password: encrypted,
         code,
       },
     });
