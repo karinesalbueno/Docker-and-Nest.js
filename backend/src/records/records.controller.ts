@@ -1,9 +1,12 @@
-import { Controller, Param, Post, Get, Body, Put } from '@nestjs/common';
+import { Controller, Param, Post, Get, Body, Put, UseGuards } from '@nestjs/common';
 import { Records } from '@prisma/client';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+
+import { RecordsService } from './records.service';
 import { CreateDto } from './dtos/create.dto';
 import { UpdateDto } from './dtos/update.dto';
-import { RecordsService } from './records.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('work')
 export class RecordsController {
   constructor(private readonly records: RecordsService) {}
