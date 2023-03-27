@@ -2,6 +2,10 @@
 
 utilizando as tecnologias:
 Docker, Nest.js, node.js, prisma, postgresql, react.js, vite. 
+docker-compose up 
+npx generate prisma
+npx prisma db push 
+npm run start
 
 - URL = localhost:3000/
 
