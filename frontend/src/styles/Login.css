@@ -1,0 +1,73 @@
+.ctn {
+    height: 100%;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    margin: -80px 0 0;
+    font-style: normal;
+    font-size: 70px;
+    line-height: 95px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #53B989;
+}
+
+.sml {
+    color: #C5C5C5;
+    margin: 0 0 60px;
+}
+
+.register {
+    color: #383232;
+    font-weight: 500;
+    font-size: 17px;
+    margin: -10px 0 20px;
+}
+
+@media (min-width: 700px) {
+    .login {
+        font-size: 80px;
+    }
+}
+
+#code,
+#name,
+#email,
+#password {
+    box-sizing: border-box;
+    width: 256px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 2px solid #53B989;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.label {
+    color: #818080;
+    font-size: 0.89rem;
+}
+
+#submit {
+    margin: 30px 0;
+    width: 256px;
+    height: 39px;
+    background: #0B4148;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.lgForm,
+.regiterForm {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0;
+}
