@@ -1,4 +1,4 @@
-import API from "./Api";
+import API from "./API";
 
 export function createAuth(data: { usercode: string; password: string }) {
   return API.post("auth/login", data);
