@@ -21,6 +21,13 @@
     margin: 0 0 60px;
 }
 
+.register {
+    color: #383232;
+    font-weight: 500;
+    font-size: 17px;
+    margin: -10px 0 20px;
+}
+
 @media (min-width: 700px) {
     .login {
         font-size: 80px;
@@ -28,6 +35,8 @@
 }
 
 #code,
+#name,
+#email,
 #password {
     box-sizing: border-box;
     width: 256px;
@@ -35,6 +44,12 @@
     background: #FFFFFF;
     border: 2px solid #53B989;
     border-radius: 10px;
+    padding: 0 10px;
+}
+
+.label {
+    color: #818080;
+    font-size: 0.89rem;
 }
 
 #submit {
@@ -50,7 +65,9 @@
     cursor: pointer;
 }
 
-.lgForm {
+.lgForm,
+.regiterForm {
     display: flex;
     flex-direction: column;
+    padding: 2px 0;
 }
