@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { useState } from "react"
 import { createAuth } from "../service/Routers";
 import '../styles/Login.css';
@@ -9,6 +11,8 @@ interface ILogin {
 
 export const Login = () => {
     const [state, setState] = useState<ILogin>({ usercode: '', password: '' });
+    const navigate = useNavigate();
+
 
     const fields = [
         { id: 'code', name: 'usercode', label: 'Insira seu código funcionário:', type: 'text' },
@@ -20,14 +24,20 @@ export const Login = () => {
         setState(prevState => ({ ...prevState, [name]: value }));
     }
 
-    const onSubmitForm = () => {
-        createAuth(state)
+    const onSubmitForm = async (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+
+        await createAuth(state)
             .then((response: any) => {
-                console.log(response);
+                const data = response.data;
+                if (data) {
+                    localStorage.setItem('token', JSON.stringify(data))
+                    navigate("/home")
+                }
             })
             .catch((error: any) => {
-                console.log(error);
-            });
+                console.log(error)
+            })
     }
 
     return (
@@ -35,8 +45,7 @@ export const Login = () => {
             <p className="login">LOGIN</p>
             <small className="sml">Sua plataforma de registros diários</small>
 
-            <form onSubmit={(event) => { event.preventDefault(), console.log(state) }}>
-
+            <form onSubmit={(event) => onSubmitForm(event)}>
                 {
                     fields.map(field => (
 
@@ -55,7 +64,7 @@ export const Login = () => {
                     ))
                 }
 
-                <input type="submit" name="Entrar" id="submit" onClick={() => onSubmitForm()} value={"Entrar"} />
+                <input type="submit" name="Entrar" id="submit" value={"Entrar"} />
             </form>
 
         </div>

@@ -9,6 +9,10 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/home",
+    element: 'hometa :D',
+  },
+  {
     path: "sign-up/",
     element: <Register />,
   },
