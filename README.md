@@ -18,7 +18,7 @@ First, run the backend development server:
 
 - URL = localhost:3000/
 
-- <b>post {URL}/auth/login</b> - <i>Auth: retorna JWT TOKEN</i> ```{ "userCode": "xxx", "password": "xxx" } ```
+- <b>post {URL}/auth/login</b> - <i>Auth: retorna JWT TOKEN</i> ```{ "usercode": "xxx", "password": "xxx" } ```
 
 - <b>get  {URL}/users/</b> - <i>todos usuários</i>
 - <b>get  {URL}/users/:code</b>  - <i>usuário por código</i>
