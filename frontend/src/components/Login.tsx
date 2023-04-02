@@ -11,8 +11,8 @@ interface ILogin {
 
 export const Login = () => {
     const [state, setState] = useState<ILogin>({ usercode: '', password: '' });
+    const [message, setMessage] = useState({ message: '' })
     const navigate = useNavigate();
-
 
     const fields = [
         { id: 'code', name: 'usercode', label: 'Insira seu código funcionário:', type: 'text' },
@@ -37,6 +37,7 @@ export const Login = () => {
             })
             .catch((error: any) => {
                 console.log(error)
+                setMessage({ message: 'Dados inválidos, tente novamente!' })
             })
     }
 
@@ -59,14 +60,16 @@ export const Login = () => {
                                 value={state[field.id as keyof typeof state]} // informa ao TypeScript que o valor é uma string que pode ser usada como uma chave de índice válida
                                 onChange={handleChange}
                             />
-
                         </div>
                     ))
                 }
+                {/* mensagem de erro */}
+                <p id="error"> {message.message} </p>
 
                 <input type="submit" name="Entrar" id="submit" value={"Entrar"} />
             </form>
 
+            <a href="/signup">Registrar-se</a>
         </div>
     )
 }

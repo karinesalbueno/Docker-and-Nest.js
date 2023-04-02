@@ -7,7 +7,7 @@ import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService, private jwtService: JwtService) { }
+  constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
   async validateUser(userCode: string, pass: string): Promise<object | string> {
     const user = await this.usersService.FindUser(userCode);
@@ -31,6 +31,8 @@ export class AuthService {
           expiresIn: '2h',
         }),
       };
+    } else {
+      throw new Error('400');
     }
   }
 }
