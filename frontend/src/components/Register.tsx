@@ -22,10 +22,10 @@ export const Register = () => {
     }
 
     const fields = [
-        { id: 'code', label: 'código', type: 'text' },
-        { id: 'name', label: 'nome', type: 'text' },
-        { id: 'email', label: 'e-mail', type: 'email' },
-        { id: 'password', label: 'senha', type: 'password' }
+        { id: 'code', label: 'código:', type: 'text' },
+        { id: 'name', label: 'nome:', type: 'text' },
+        { id: 'email', label: 'e-mail:', type: 'email' },
+        { id: 'password', label: 'senha:', type: 'password' }
     ];
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
