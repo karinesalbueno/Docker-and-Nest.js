@@ -20,9 +20,9 @@ body {
   min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #FFFF;
+    background-color: #242424;
   }
 }
