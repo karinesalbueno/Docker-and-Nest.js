@@ -1,4 +1,5 @@
-## Projeto full stack com Docker e Nest.js 
+### Projeto com Docker e Nest.js 
+notas: backend finalizado, frontend em andamento 
 
 utilizando as tecnologias:
 * Docker 
